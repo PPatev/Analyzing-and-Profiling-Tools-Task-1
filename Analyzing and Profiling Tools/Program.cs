@@ -20,7 +20,7 @@ namespace Analyzing_and_Profiling_Tools
 
         public static string GeneratePasswordHashUsingSalt(string passwordText, byte[] salt)
         {
-            var iterate = 10_000_000;
+            var iterate = 10_000;
             var pbkdf2 = new CustomRfc2898DeriveBytes(passwordText, salt, iterate);
             byte[] hash = pbkdf2.GetBytes(20);
 

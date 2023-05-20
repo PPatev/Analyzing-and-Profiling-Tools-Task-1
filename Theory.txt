@@ -1,0 +1,55 @@
+Questions for the self-check:
+
+
+What profiling tools does Visual Studio provides?
+When debugging VS provides Diagnostic Tools window.
+Tools available in the Diagnostic Tools window or during a debugging session include:
+    CPU usage
+    Memory usage
+    PerfTips
+
+Tools in Debug -> Performance Profiler are intended to provide analysis for Release builds. 
+In the Performance Profiler, you can collect diagnostic info while the app is running, 
+and then examine the collected information after the app is stopped (a post-mortem analysis).
+Tools available in the Performance Profiler include:
+    CPU usage
+    .NET object allocation
+    Memory usage
+    .NET async tool
+    Instrumentation
+    File I/O
+    .NET Counters
+    Database tool
+    GPU usage
+
+What typical performance issues could you mention? How to diagnose and prevent them?
+Inefficient algorithms, poor data structures, unnecessary computations, and a lack of code optimization, 
+memory leaks, network latency, concurrency and synchronization problems. These problems can be diagnosed with the help of Profilers like VS Performance Profiler.
+
+What .pdb files are and how are they used in debugging?
+Program database (.pdb) files, also called symbol files, map identifiers and statements in your project's source code to corresponding identifiers 
+and instructions in compiled apps. These mapping files link the debugger to your source code, which enables debugging.
+When you build a project from the Visual Studio IDE with the standard Debug build configuration, the compiler creates the appropriate symbol files. 
+The Visual Studio debugger uses .pdb files to determine two key pieces of information while debugging:
+1)The source file name and line number to display in the Visual Studio IDE.
+2)Where in the app to stop for a breakpoint.
+
+
+What “Unmanaged resources” in .NET are?
+The most common types of unmanaged resources are objects that wrap operating system resources, such as files, windows, network connections, or database connections. 
+Although the garbage collector is able to track the lifetime of an object that encapsulates an unmanaged resource, it doesn't know how to release and clean up the unmanaged resource.
+That is why developers must implement the dispose pattern, or use a safe handle to wrap the unmanaged resource.
+
+How do you understand Dispose pattern? How is it related to destructors (FinaliseFinalize)?
+It`s purpose is to free unmanaged resources, perform general cleanup, and to indicate that the finalizer, if one is present, doesn't have to run.
+If a type does override the Finalize method, the garbage collector adds an entry for each instance of the type to an internal structure called the finalization queue. 
+The finalization queue contains entries for all the objects in the managed heap whose finalization code must run before the garbage collector can reclaim their memory. 
+The garbage collector then calls the Finalize method automatically after it has discovered that an object is inaccessible, 
+unless the object has been exempted from finalization by a call to the GC.SuppressFinalize method. 
+
+How can you debug compiled applications? 
+In debug mode, go to the Modules window and from the context menu of a .NET assembly, and then select the Decompile Source to Symbol File command. 
+You can extract source files that are embedded in a symbol file using the Extract Source Code command in the context menu of the Modules window.
+The extracted source files are added to the solution as miscellaneous files. The miscellaneous files feature is off by default in Visual Studio. 
+You can enable this feature from the Tools > Options > Environment > Documents > Show Miscellaneous files in Solution Explorer checkbox. 
+Without enabling this feature, you won't be able to open the extracted source code.

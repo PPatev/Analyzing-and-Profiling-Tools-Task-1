@@ -1,0 +1,5 @@
+﻿The provided code was inspected with CPU Usage Tool from Visual Studio Performance Profiler.
+The hot path indicated that the performance bottleneck was occuring when pbkdf2.GetBytes(20) was called.
+The code for Rfc2898DeriveBytes was decompiled and copied in CustomRfc2898DeriveBytes.cs.
+Further inspection with the CPU Usage tool showed that the hotpath was in the Func() method which called 
+the HashAlgorithm method TryComputeHash() twice and which was causing the bottleneck.
